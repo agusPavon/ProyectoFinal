@@ -56,22 +56,114 @@ Bunaster es una aplicación web orientada a conectar a la comunidad del café de
 
 ---
 
-## ⚙ Instalación y Configuración
 
 
-```bash
-cd bunaster
-Instalar dependencias PHP:
+
+
+## 🚀 Instalación de Bunaster en otra PC (Guía rápida)
+### 1️⃣ Instalar Laragon
+
+Descargar Laragon desde: https://laragon.org/download/
+
+Instalar Laragon (versión Full recomendada).
+
+Abrir Laragon → presionar “Start All” para iniciar Apache + MySQL.
+
+### 2️⃣ Clonar o copiar el proyecto
+
+En la carpeta de proyectos de Laragon:
+
+C:\laragon\www\
+
+
+Cloná o copiá tu proyecto:
+
+git clone https://github.com/agusPavon/ProyectoFinal
+
+### 3️⃣ Instalar dependencias de PHP
+
+Abrí una terminal dentro del proyecto:
+
+cd C:\laragon\www\bunaster
+
+
+Instalá dependencias:
+
 composer install
-Instalar dependencias JS:
-npm install
-Configurar entorno:
-cp .env.example .env
-php artisan key:generate
-Configurar credenciales MySQL y Mapbox en .env.
 
-Migraciones + seeders:
-php artisan migrate --seed
-Iniciar servidor backend:
+### 4️⃣ Instalar dependencias de Node
+npm install
+npm run build
+
+
+(O en desarrollo podés usar: npm run dev)
+
+### 5️⃣ Crear archivo .env
+
+Copiar el ejemplo:
+
+cp .env.example .env
+
+
+Generar la key:
+
+php artisan key:generate
+
+### 6️⃣ Importar la base de datos
+Dentro de Laragon:
+
+Abrir Menu → MySQL → phpMyAdmin
+
+Crear una base de datos llamada:
+
+bunaster
+
+
+Importar el archivo SQL:
+
+Ir a Importar
+
+Seleccionar tu archivo:
+
+/database/sql/bunaster.sql
+
+
+⚠️ Importante:
+Si da error "Failed to open referenced table 'users'", primero importar users (si está separado) o desactivar checks:
+
+Antes de importar:
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+
+Después:
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+### 7️⃣ Configurar .env con tu DB
+
+Editar:
+
+DB_DATABASE=bunaster
+DB_USERNAME=root
+DB_PASSWORD=
+
+
+(Si Laragon usa contraseña, agregarla)
+
+### 8️⃣ Configurar almacenamiento
+
+Laravel necesita el link simbólico:
+
+php artisan storage:link
+
+
+Esto permite cargar imágenes de check-ins, avatares, etc.
+
+### 9️⃣ Iniciar servidor
 php artisan serve
-npm run dev
+
+
+La app queda disponible en:
+
+http://127.0.0.1:8000

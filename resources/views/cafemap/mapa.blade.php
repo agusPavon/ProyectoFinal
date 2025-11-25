@@ -59,6 +59,7 @@
 
 
         <div id="map" class="map-view"></div>
+
         @include('cafemap.partials.list')
 
     </div>

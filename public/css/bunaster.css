@@ -2535,16 +2535,6 @@ label {
     display: block;
 }
 
-.input-modern {
-    width: 100%;
-    border: 1px solid #e7d8c7;
-    background: #fff;
-    border-radius: 12px;
-    padding: 0.6rem;
-    color: #5b442e;
-    resize: none;
-    font-size: 0.9rem;
-}
 
 /* Upload photo */
 .image-upload-modern input {
@@ -2607,4 +2597,10 @@ label {
 .post-mine img.checkin-photo {
     border: 2px solid #8B4513;
     border-radius: 6px;
+}
+
+
+.bienvenido{
+    font-family: 'Trocchi', 'Serif';
+    color: var(--marron-tostado);
 }

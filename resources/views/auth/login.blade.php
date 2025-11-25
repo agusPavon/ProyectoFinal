@@ -4,72 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar sesión | Bunaster</title>
+
     <link rel="stylesheet" href="{{ asset('css/bunaster.css') }}">
+      <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=poppins:400,500,600|trocchi:400" rel="stylesheet" />
+
     <style>
         body {
-            background-color: #FEF8E0;
+            background: linear-gradient(180deg, #FFF9F2 0%, #F6EEE4 100%);
             font-family: 'Poppins', sans-serif;
             color: #542201;
             display: flex;
-            align-items: center;
             justify-content: center;
-            height: 100vh;
-            margin: 0;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
+
         .login-card {
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 400px;
+            max-width: 340px; /* MÁS CHICO */
+            background: white;
+            padding: 1.7rem 1.4rem;
+            border-radius: 18px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            text-align: center;
         }
+
         .login-card img {
-            width: 80px;
-            margin-bottom: 1rem;
+            width: 160px; /* LOGO REDUCIDO */
+            margin-bottom: 0.6rem;
         }
+
         h1 {
             font-family: 'Trocchi', serif;
-            text-align: center;
-            margin-bottom: .5rem;
+            font-size: 1.5rem; /* Más chico */
+            margin-bottom: 0.2rem;
         }
+
         .subtitle {
-            text-align: center;
+            font-size: 0.8rem;
             color: #6B6F58;
-            font-size: .9rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
+
         label {
+            display: block;
+            text-align: left;
+            font-size: 0.85rem;
             font-weight: 600;
-            margin-top: 1rem;
+            margin-top: 0.8rem;
         }
+
         input {
-            width: 100%;
-            padding: 10px;
-            margin-top: .3rem;
-            border-radius: 10px;
+            width: 80%;
+            padding: 9px;
+            margin-top: 0.25rem;
+            border-radius: 8px;
             border: 1px solid rgba(84,34,1,0.3);
             background: #FFF8F4;
+            font-size: 0.9rem;
         }
+
         button {
             width: 100%;
-            background: #542201;
-            color: #FFF;
-            border: none;
-            border-radius: 12px;
             padding: 10px;
-            margin-top: 1.5rem;
-            font-weight: bold;
+            margin-top: 1rem;
+            background: #542201;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
             cursor: pointer;
-            transition: .3s;
+            transition: 0.2s;
         }
+
         button:hover {
             background: #3b1601;
         }
+
         .links {
-            text-align: center;
             margin-top: 1rem;
-            font-size: .9rem;
+            font-size: 0.8rem;
         }
+
         .links a {
             color: #542201;
             font-weight: 600;
@@ -81,50 +100,77 @@
             color: #b91c1c;
             border: 1px solid #fca5a5;
             border-radius: 8px;
-            padding: 10px;
-            font-size: 0.9rem;
+            padding: 8px;
+            font-size: 0.8rem;
+            text-align: left;
             margin-bottom: 10px;
+        }
+.remember-wrapper {
+    margin-top: 0.8rem;
+    display: flex;
+    justify-content: flex-start;
 }
+
+.remember-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: #542201;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.remember-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #542201; /* color Bunaster */
+    cursor: pointer;
+}
+
     </style>
 </head>
+
 <body>
     <div class="login-card">
-        <div style="text-align:center;">
-            <img src="{{ asset('img/marca-principal.svg') }}" alt="Bunaster Logo" style="width:250px" max-width:"45%">
-        </div>
 
-        <h1>Bienvenido a Bunaster</h1>
-        <p class="subtitle">Conectá. Compartí. Disfrutá.</p>
+        @if ($errors->any())
+            <div class="alert-error">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        <img src="{{ asset('img/marca-principal.svg') }}" alt="Bunaster">
+
+        <h1 class='bienvenido'>Bienvenido</h1>
+        <p class="subtitle">Descubrí. Compartí. Disfrutá ☕✨</p>
 
         <form method="POST" action="{{ route('login') }}">
-            @if ($errors->any())
-        <div class="alert alert-error">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
             @csrf
 
             <label for="email">Email</label>
-            <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus>
+            <input id="email" type="email" name="email" value="{{ old('email') }}" required>
 
             <label for="password">Contraseña</label>
             <input id="password" type="password" name="password" required>
 
-            <div style="margin-top: .6rem;">
-                <label>
-                    <input type="checkbox" name="remember"> Recordarme
-                </label>
+            <div class="remember-wrapper">
+            <label class="remember-label">
+                <input type="checkbox" name="remember" class="remember-checkbox">
+                Recordarme
+            </label>
             </div>
+
 
             <button type="submit">Iniciar sesión</button>
 
             <div class="links">
                 <p><a href="{{ route('password.request') }}">¿Olvidaste tu contraseña?</a></p>
-                <p>¿No tenés cuenta? <a href="{{ route('register') }}">Registrate acá</a></p>
+                <p>¿No tenés cuenta? <a href="{{ route('register') }}">Crear cuenta</a></p>
             </div>
         </form>
     </div>
