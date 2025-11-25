@@ -119,7 +119,7 @@ Crear una base de datos llamada:
 bunaster
 
 
-Importar el archivo SQL:
+Importar el archivo SQL adjuntado al zip:
 
 Ir a Importar
 
