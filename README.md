@@ -173,9 +173,9 @@ http://127.0.0.1:8000
 Este documento resume todos los endpoints definidos en la aplicación según el archivo routes/web.php.
 
 ### 🟡 Públicos (sin autenticación)
-Método	Ruta	Descripción
-GET	/	Muestra el splash o redirige al mapa si el usuario está logueado.
-GET	/inicio	Redirige al mapa si está logueado, o al login si no.
+Método	Ruta	    Descripción
+GET	     /	        Muestra el splash o redirige al mapa si el usuario está logueado.
+GET	    /inicio	  Redirige al mapa si está logueado, o al login si no.
 ### 🟢 Autenticación (Laravel Jetstream)
 
 Ya provistos por Jetstream
@@ -192,14 +192,14 @@ Ya provistos por Jetstream
 
 ## 🔐 Rutas protegidas (requieren login)
 ### 🌎 Mapa & Cafeterías
-Método	Ruta	Nombre
-GET	/mapa	cafemap.mapa
-GET	/suggest-new	cafemap.suggest-new
-POST	/cafes/suggest	cafes.suggest.store
+Método	Ruta	       Nombre
+GET	   /mapa	            cafemap.mapa
+GET	   /suggest-new	    cafemap.suggest-new
+POST   /cafes/suggest	cafes.suggest.store
 ### ⭐ Reviews
-Método	Ruta	Descripción
-GET	/cafes/{id}/review	Formulario de reseña.
-POST	/reviews	Guarda la reseña.
+Método	Ruta	               Descripción
+GET	    /cafes/{id}/review 	   Formulario de reseña.
+POST	/reviews	           Guarda la reseña.
 ### 📍 Check-ins
 Método	Ruta
 POST	/checkin
@@ -209,31 +209,31 @@ Método	Ruta
 GET	/comunidad
 ### 🏠 Home
 Método	Ruta
-GET	/home
+GET	   /home
 ### 🫘 Beans
 Método	Ruta
-GET	/beans
+GET	    /beans
 ### ⚙️ Configuración
 Método	Ruta
-GET	/configuracion
-GET	/suscripcion/planes
-GET	/suscripcion
+GET	    /configuracion
+GET	    /suscripcion/planes
+GET	    /suscripcion
 ### 🚪 Logout
 Método	Ruta
 POST	/logout
 ## 🔵 Rutas de Administración (requieren Rol Admin)
 ### 📍 Gestión de Cafeterías (CRUD completo)
-Método	Ruta	Descripción
-GET	/admin/cafes	Listar cafeterías
-GET	/cafes/create	Crear
-POST	/cafes	Guardar
-GET	/cafes/{id}/edit	Editar
-PUT	/cafes/{cafe}	Actualizar
+Método	Ruta	                Descripción
+GET	  /admin/cafes	            Listar cafeterías
+GET	 /cafes/create	            Crear
+POST	/cafes        	        Guardar
+GET	/cafes/{id}/edit	        Editar
+PUT	/cafes/{cafe}	            Actualizar
 DELETE	/cafes/{id}/eliminar	Eliminar
-GET	/cafes/{cafe}	Ver detalle
+GET	/cafes/{cafe}	            Ver detalle
 ### ☕ Administración de Sugerencias
 Método	Ruta
-GET	/admin/suggestions
-GET	/admin/suggestions/{id}
+GET	    /admin/suggestions
+GET	    /admin/suggestions/{id}
 POST	/admin/suggestions/{id}/approve
 POST	/admin/suggestions/{id}/reject
