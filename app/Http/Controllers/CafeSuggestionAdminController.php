@@ -28,8 +28,8 @@ class CafeSuggestionAdminController extends Controller
             'name' => $suggestion->name,
             'address' => $suggestion->address,
             'website' => $suggestion->website,
-            'latitude' => $suggestion->latitude,
-            'longitude' => $suggestion->longitude,
+            'lat' => $suggestion->latitude,
+            'lng' => $suggestion->longitude,
             'roasting_type' => $suggestion->roasting_type,
             'attributes' => $suggestion->attributes,
         ]);

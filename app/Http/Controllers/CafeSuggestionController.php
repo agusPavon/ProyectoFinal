@@ -13,8 +13,8 @@ class CafeSuggestionController extends Controller
             'name' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'website' => 'nullable|string|max:255',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
             'roasting_type' => 'nullable|string|max:50',
             'attributes' => 'nullable|array'
         ]);
