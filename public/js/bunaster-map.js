@@ -192,31 +192,43 @@ document.querySelectorAll(".cafe-card").forEach(card => {
         }
     }
 
-    const today = new Date().toLocaleDateString("es-AR", { weekday: "long" }).toLowerCase();
+    // Normalizar nombre del día quitando tildes
+function normalizeDay(str) {
+    return str
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, ""); // saca acentos
+}
 
-    // --- 1. Abierto ahora
-    const now = new Date();
-    const minsNow = now.getHours() * 60 + now.getMinutes();
+let todayRaw = new Date().toLocaleDateString("es-AR", { weekday: "long" });
+const today = normalizeDay(todayRaw); // lunes, martes, miercoles, sabado, etc.
 
-    if (hours[today]) {
-        const [open, close] = hours[today].split("-");
-        const [h1,m1] = open.split(":").map(Number);
-        const [h2,m2] = close.split(":").map(Number);
+// --- 1. Abierto ahora ---
+const now = new Date();
+const minsNow = now.getHours() * 60 + now.getMinutes();
 
-        const openM  = h1*60 + m1;
-        const closeM = h2*60 + m2;
+if (hours[today]) {
+    const range = hours[today].replace(/\s+/g, ""); // por si hay espacios tipo "08:00 - 20:00"
+    const [open, close] = range.split("-");
+    const [h1, m1] = open.split(":").map(Number);
+    const [h2, m2] = close.split(":").map(Number);
 
-        const isOpen = minsNow >= openM && minsNow <= closeM;
+    const openM  = h1 * 60 + m1;
+    const closeM = h2 * 60 + m2;
 
-        openStatusEl.textContent = isOpen ? "🟢 Abierto ahora" : "🔴 Cerrado";
-    } else {
-        openStatusEl.textContent = "Horario no disponible";
-    }
+    const isOpen = minsNow >= openM && minsNow <= closeM;
 
-    // --- 2. Horario de HOY
-    todayHoursEl.textContent = hours[today]
-        ? `Hoy: ${hours[today]}`
-        : "Hoy: —";
+    openStatusEl.textContent = isOpen ? "🟢 Abierto ahora" : "🔴 Cerrado";
+} else {
+    openStatusEl.textContent = "Horario no disponible";
+}
+
+// --- 2. Horario de HOY ---
+todayHoursEl.textContent = hours[today]
+    ? `Hoy: ${hours[today]}`
+    : "Hoy: —";
+
+    
 
     // --- 3. Tabla semanal
     const order = ["lunes","martes","miercoles","jueves","viernes","sabado","domingo"];
